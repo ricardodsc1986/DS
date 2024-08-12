@@ -1,0 +1,62 @@
+// Definição da classe Aluno
+
+class Aluno {
+  // Atributos da classe
+
+  String nome;
+
+  int idade;
+
+  double nota1;
+
+  double nota2;
+
+  double nota3;
+
+  // Construtor da classe
+
+  Aluno(this.nome, this.idade, this.nota1, this.nota2, this.nota3);
+
+  // Método para exibir informações do aluno
+
+  void exibirInformacoes() {
+    print("Nome: $nome");
+
+    print("Idade: $idade");
+
+    print(
+        "Notas: ${nota1.toStringAsFixed(2)}, ${nota2.toStringAsFixed(2)}, ${nota3.toStringAsFixed(2)}");
+  }
+
+  // Método para calcular a média das notas
+
+  double calcularMedia() {
+    return (nota1 + nota2 + nota3) / 3;
+  }
+
+  // Método para exibir a média formatada
+
+  void exibirMediaFormatada() {
+    print("Média das notas: ${calcularMedia().toStringAsFixed(2)}");
+  }
+}
+
+void main() {
+  // Criando objetos da classe Aluno
+
+  var aluno1 = Aluno("João", 20, 7.456, 8.019, 6.589);
+
+  var aluno2 = Aluno("Maria", 22, 9.123, 8.456, 7.789);
+
+  // Usando métodos dos objetos
+
+  aluno1.exibirInformacoes();
+
+  aluno1.exibirMediaFormatada();
+
+  print("");
+
+  aluno2.exibirInformacoes();
+
+  aluno2.exibirMediaFormatada();
+}
