@@ -1,62 +1,40 @@
-// Definição da classe Aluno
+// Definição da classe Livro
 
-class Aluno {
-  // Atributos da classe
+class Livro {
+  // Atributos classe
+  String titulo;
+  String autor;
+  int anoPublicacao;
+  String genero;
+  String editora;
+  double precoVenda;
+  double custo;
+  double lucro;
 
-  String nome;
+  // Construtor
+  Livro(this.titulo, this.autor, this.anoPublicacao, this.genero, this.editora,
+      this.precoVenda, this.custo, this.lucro);
 
-  int idade;
-
-  double nota1;
-
-  double nota2;
-
-  double nota3;
-
-  // Construtor da classe
-
-  Aluno(this.nome, this.idade, this.nota1, this.nota2, this.nota3);
-
-  // Método para exibir informações do aluno
-
+  // Método para exibir informações do livro
   void exibirInformacoes() {
-    print("Nome: $nome");
-
-    print("Idade: $idade");
-
-    print(
-        "Notas: ${nota1.toStringAsFixed(2)}, ${nota2.toStringAsFixed(2)}, ${nota3.toStringAsFixed(2)}");
-  }
-
-  // Método para calcular a média das notas
-
-  double calcularMedia() {
-    return (nota1 + nota2 + nota3) / 3;
-  }
-
-  // Método para exibir a média formatada
-
-  void exibirMediaFormatada() {
-    print("Média das notas: ${calcularMedia().toStringAsFixed(2)}");
+    print("Título: $titulo");
+    print("Autor: $autor");
+    print("Ano de Publicação: $anoPublicacao");
+    print("Gênero: $genero");
+    print("Editora: $editora");
+    print("Preço de Venda: \$${precoVenda.toStringAsFixed(2)}");
+    print("Custo: \$${custo.toStringAsFixed(2)}");
+    print("Lucro: \$${lucro.toStringAsFixed(2)}");
   }
 }
 
 void main() {
-  // Criando objetos da classe Aluno
+  // objetos da classe Livro
+  var livro1 = Livro("Dom Casmurro", "Machado de Assis", 1899, "Romance", "Editora XYZ", 29.90, 15.00, 14.90);
+  var livro2 = Livro("O Pequeno Príncipe", "Antoine de Saint-Exupéry", 1943, "Fábula", "Editora ABC", 19.90, 10.00, 9.90);
 
-  var aluno1 = Aluno("João", 20, 7.456, 8.019, 6.589);
-
-  var aluno2 = Aluno("Maria", 22, 9.123, 8.456, 7.789);
-
-  // Usando métodos dos objetos
-
-  aluno1.exibirInformacoes();
-
-  aluno1.exibirMediaFormatada();
-
+  // métodos dos objetos
+  livro1.exibirInformacoes();
   print("");
-
-  aluno2.exibirInformacoes();
-
-  aluno2.exibirMediaFormatada();
+  livro2.exibirInformacoes();
 }
