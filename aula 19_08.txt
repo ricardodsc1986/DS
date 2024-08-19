@@ -1,0 +1,48 @@
+class SalReceber {
+  late double sal, faltas, salFinal, s1, s2;
+  void setSalario(double v) {
+    sal = v;
+  }
+
+  double getSalario() {
+    return sal;
+  }
+
+  void setFaltas(double v) {
+    faltas = v;
+  }
+
+  double getFaltas() {
+    return faltas;
+  }
+
+  void salHora() {
+    s1 = sal / 240;
+  }
+
+  double getS1() {
+    return s1;
+  }
+
+  void salTotal() {
+    salHora();
+    s2 = sal - (s1 * faltas);
+  }
+
+  double getS2() {
+    return s2;
+  }
+}
+
+void main() {
+  var c1 = SalReceber();
+  c1.setSalario(1000);
+  c1.setFaltas(120);
+  c1.salTotal();
+
+  print('Salario :${c1.getSalario()}');
+  print('Total de faltas em horas :${c1.getFaltas()}');
+  c1.salHora();
+  c1.salTotal();
+  print('Salario total à receber:${c1.getS2()}');
+}
