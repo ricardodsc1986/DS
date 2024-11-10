@@ -1,0 +1,327 @@
+import 'package:flutter/material.dart';
+
+
+void main() {
+
+  runApp(MyApp());
+
+}
+
+
+class MyApp extends StatelessWidget {
+
+  @override
+
+  Widget build(BuildContext context) {
+
+    return MaterialApp(
+
+      home: Scaffold(
+
+        appBar: AppBar(title: Text('Somador de Números')),
+
+        body: SomadorForm(),
+
+      ),
+
+    );
+
+  }
+
+}
+
+
+class SomadorForm extends StatefulWidget {
+
+  @override
+
+  _SomadorFormState createState() => _SomadorFormState();
+
+}
+
+
+class _SomadorFormState extends State<SomadorForm> {
+
+  final TextEditingController _numero1 = TextEditingController();
+
+  final TextEditingController _numero2 = TextEditingController();
+
+  String _resultado = '';
+
+
+  void _somar() {
+
+    final double? numero1 = double.tryParse(_numero1.text);
+
+    final double? numero2 = double.tryParse(_numero2.text);
+
+
+    if (numero1 != null && numero2 != null) {
+
+      final double soma = numero1 + numero2;
+
+      setState(() {
+
+        _resultado = 'Resultado: $soma';
+
+      });
+
+    } else {
+
+      setState(() {
+
+        _resultado = 'Por favor, insira números válidos.';
+
+      });
+
+    }
+
+  }
+  
+    void _subtrair() {
+
+    final double? numero1 = double.tryParse(_numero1.text);
+
+    final double? numero2 = double.tryParse(_numero2.text);
+
+
+    if (numero1 != null && numero2 != null) {
+
+      final double subtrai = numero1 - numero2;
+
+      setState(() {
+
+        _resultado = 'Resultado: $subtrai';
+
+      });
+
+    } else {
+
+      setState(() {
+
+        _resultado = 'Por favor, insira números válidos.';
+
+      });
+
+    }
+
+  }
+  
+      void _multiplicar() {
+
+    final double? numero1 = double.tryParse(_numero1.text);
+
+    final double? numero2 = double.tryParse(_numero2.text);
+
+
+    if (numero1 != null && numero2 != null) {
+
+      final double multiplique = numero1 * numero2;
+
+      setState(() {
+
+        _resultado = 'Resultado: $multiplique';
+
+      });
+
+    } else {
+
+      setState(() {
+
+        _resultado = 'Por favor, insira números válidos.';
+
+      });
+
+    }
+
+  }
+  
+      void _dividir() {
+
+    final double? numero1 = double.tryParse(_numero1.text);
+
+    final double? numero2 = double.tryParse(_numero2.text);
+
+
+    if (numero1 != null && numero2 != null) {
+
+      final double divide = numero1 / numero2;
+
+      setState(() {
+
+        _resultado = 'Resultado: $divide';
+
+      });
+
+    } else {
+
+      setState(() {
+
+        _resultado = 'Por favor, insira números válidos.';
+
+      });
+
+    }
+
+  }
+
+
+  @override
+
+  Widget build(BuildContext context) {
+
+    return Padding(
+
+      padding: const EdgeInsets.all(16.0),
+
+      child: Column(
+
+        mainAxisAlignment: MainAxisAlignment.center,
+
+        children: [
+
+          TextField(
+
+            controller: _numero1,
+
+            decoration: InputDecoration(labelText: 'Número 1'),
+
+            keyboardType: TextInputType.number,
+
+          ),
+
+          TextField(
+
+            controller: _numero2,
+
+            decoration: InputDecoration(labelText: 'Número 2'),
+
+            keyboardType: TextInputType.number,
+
+          ),
+
+          SizedBox(height: 20),
+
+          ElevatedButton(
+
+            onPressed: _somar,
+
+            child: Text('Somar'),
+
+          ),
+          SizedBox(height: 20),
+
+          ElevatedButton(
+
+            onPressed: _subtrair,
+
+            child: Text('Subtrair'),
+
+          ),
+                   
+          SizedBox(height: 20),
+
+          ElevatedButton(
+
+            onPressed: _multiplicar,
+
+            child: Text('Multiplicar'),
+
+          ),
+          SizedBox(height: 20),
+
+          ElevatedButton(
+
+            onPressed: _dividir,
+
+            child: Text('Dividir'),
+
+          ),
+
+          SizedBox(height: 20),
+
+          Text(_resultado, style: TextStyle(fontSize: 24)),
+
+        ],
+
+      ),
+
+    );
+
+  }
+
+}
+
+==========================================================================================================================
+
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(title: Text('Calculadora Fatorial')),
+        body: FatorialForm(),
+      ),
+    );
+  }
+}
+
+class FatorialForm extends StatefulWidget {
+  @override
+  _FatorialFormState createState() => _FatorialFormState();
+}
+
+class _FatorialFormState extends State<FatorialForm> {
+  final TextEditingController _numero = TextEditingController();
+  String _resultado = '';
+
+  void _calcularFatorial() {
+    final int? numero = int.tryParse(_numero.text);
+
+    if (numero != null && numero >= 0) {
+      final int fatorial = _fatorial(numero);
+      setState(() {
+        _resultado = 'Fatorial de $numero é: $fatorial';
+      });
+    } else {
+      setState(() {
+        _resultado = 'Por favor, insira um número inteiro não negativo.';
+      });
+    }
+  }
+
+  int _fatorial(int n) {
+    if (n == 0) return 1; // 0! = 1
+    return n * _fatorial(n - 1);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(16.0),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          TextField(
+            controller: _numero,
+            decoration: InputDecoration(labelText: 'Número'),
+            keyboardType: TextInputType.number,
+          ),
+          SizedBox(height: 20),
+          ElevatedButton(
+            onPressed: _calcularFatorial,
+            child: Text('Calcular Fatorial'),
+          ),
+          SizedBox(height: 20),
+          Text(_resultado, style: TextStyle(fontSize: 24)),
+        ],
+      ),
+    );
+  }
+}

@@ -1,0 +1,97 @@
+class Producao{
+  
+  late double altMp, compMp, areaMp;
+  late double altPA, compPA, areaPA;
+  late double restMP;
+  //-----------setters e getters--Mat. prima-----//
+  void setAltMp(double v){
+    altMp=v;
+  }
+  
+  double getAltMp(){
+    return altMp;
+  }
+  
+  void setCompMp(double v){
+    compMp=v;
+  }
+  
+  double getCompMp(){
+    return compMp;
+  }
+  // calcula área da matéria prima
+  void calcularAreaMp(){
+    // armazena o valor em um atributo
+    areaMp = altMp* compMp;
+  }
+  
+  double getAreaMp(){
+    return areaMp;
+  }
+
+
+//-----------setters e getters--Peça A-----//
+  void setAltPA(double v){
+    altPA=v;
+  }
+  
+  double getAltPA(){
+    return altPA;
+  }
+  
+  void setCompPA(double v){
+    compPA=v;
+  }
+  
+  double getCompPA(){
+    return compPA;
+  }
+  // calcula área da matéria prima
+  void calcularAreaPA(){
+    // armazena o valor em um atributo
+    areaPA = altPA* compPA;
+  }
+  
+  double getAreaPA(){
+    return areaPA;
+  }
+  // calcula o total de peças de A
+  // que podem ser produzidas a partir da 
+  // matéria prima
+  double calcularTotalPA(){
+    double tpa=areaMp/areaPA;
+    restMP = areaMp - (tpa.toInt()* areaPA);
+    return (tpa);
+  }
+  
+  double getRestMP(){
+    return restMP;
+  }
+}
+
+
+
+void main() {
+    Producao p1 = Producao();
+    p1. setAltMp(14);
+    p1. setCompMp(14);
+    p1.calcularAreaMp();
+    print(p1.getAreaMp());
+  
+    p1. setAltPA(3);
+    p1. setCompPA(3);
+    p1.calcularAreaPA();
+    print(p1.getAreaPA());
+  
+    print("Total peças A: ${p1.calcularTotalPA().toInt()}");
+  
+  print("Resto da Matéria Prima:${p1.getRestMP()}");
+  
+  
+  
+    
+  
+}
+
+
+

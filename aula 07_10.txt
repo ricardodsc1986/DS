@@ -1,0 +1,538 @@
+import 'package:flutter/material.dart';
+
+void main() => runApp(MyApp());
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Flutter Demo',
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: CheckboxSample(),
+    );
+  }
+}
+
+class CheckboxSample extends StatefulWidget {
+  @override
+  CheckboxSampleState createState() => CheckboxSampleState();
+}
+
+class CheckboxSampleState extends State<CheckboxSample> {
+  Map<String, bool> checked = {
+    'Desenv. Sistemas': false,
+    'Automação': false,
+    'Administração': false,
+  };
+
+  Map<String, bool> periodo = {
+    'Diurno': false,
+    'Matutino': false,
+    'Noturno': false,
+  };
+
+  Map<String, bool> local = {
+    'Sede': false,
+    'Macedo': false,
+    'João Cursino': false,
+  };
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        appBar: AppBar(
+          title: const Text('Checkbox Sample'),
+        ),
+        body: Padding(
+            padding: const EdgeInsets.all(2.0),
+            child:
+                Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+              Padding(
+                padding: const EdgeInsets.all(2.0),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: _buildCheckboxes(),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(2.0),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: _buildPeriodo(),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(2.0),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: _buildLocal(),
+                ),
+              ),
+            ])));
+  }
+
+  List<Widget> _buildCheckboxes() {
+    List<Widget> checkboxes = [];
+
+    // percorre todos os itens armazendos na estrutura
+
+    // Map (chave, valor), obtendo os valores
+
+    checked.forEach((String key, bool value) {
+      checkboxes.add(
+        // adiciona um item ao checkbox
+
+        CheckboxListTile(
+          title: Text(key), //adiciona título
+
+          value: value, // define valor
+
+          // implementa evento onChage para gerenciar
+
+          // valor do checkbox
+
+          onChanged: (newValue) {
+            //recebe valor atual
+
+            setState(() {
+              //altera o estado da variável
+
+              newValue != null
+                  ? //se diferente de null
+
+                  //alterna valor entre verdadeiro e falso
+
+                  checked[key] == true
+                      ? checked[key] = false
+                      : checked[key] = true
+                  : checked[key] = false;
+            });
+          },
+        ),
+      );
+    });
+
+    // adiciona ao final do checkBox, botão
+
+    checkboxes.add(
+      ElevatedButton(
+        // se pressionado executar método
+
+        onPressed: () {
+          _showSelected(); // mostra selecionados
+        },
+
+        child: const Text('Show Selected'),
+      ),
+    );
+
+    return checkboxes;
+  }
+
+  List<Widget> _buildPeriodo() {
+    List<Widget> checkboxes = [];
+
+    // percorre todos os itens armazendos na estrutura
+
+    // Map (chave, valor), obtendo os valores
+
+    periodo.forEach((String key, bool value) {
+      checkboxes.add(
+        // adiciona um item ao checkbox
+
+        CheckboxListTile(
+          title: Text(key), //adiciona título
+
+          value: value, // define valor
+
+          // implementa evento onChage para gerenciar
+
+          // valor do checkbox
+
+          onChanged: (newValue) {
+            //recebe valor atual
+
+            setState(() {
+              //altera o estado da variável
+
+              newValue != null
+                  ? //se diferente de null
+
+                  //alterna valor entre verdadeiro e falso
+
+                  periodo[key] == true
+                      ? periodo[key] = false
+                      : periodo[key] = true
+                  : periodo[key] = false;
+            });
+          },
+        ),
+      );
+    });
+
+    // adiciona ao final do checkBox, botão
+
+    checkboxes.add(
+      ElevatedButton(
+        // se pressionado executar método
+
+        onPressed: () {
+          _showSelectedPeriodo(); // mostra selecionados
+        },
+
+        child: const Text('Show Selected'),
+      ),
+    );
+
+    return checkboxes;
+  }
+
+  List<Widget> _buildLocal() {
+    List<Widget> checkboxes = [];
+
+    // percorre todos os itens armazendos na estrutura
+
+    // Map (chave, valor), obtendo os valores
+
+    local.forEach((String key, bool value) {
+      checkboxes.add(
+        // adiciona um item ao checkbox
+
+        CheckboxListTile(
+          title: Text(key), //adiciona título
+
+          value: value, // define valor
+
+          // implementa evento onChage para gerenciar
+
+          // valor do checkbox
+
+          onChanged: (newValue) {
+            //recebe valor atual
+
+            setState(() {
+              //altera o estado da variável
+
+              newValue != null
+                  ? //se diferente de null
+
+                  //alterna valor entre verdadeiro e falso
+
+                  local[key] == true
+                      ? local[key] = false
+                      : local[key] = true
+                  : local[key] = false;
+            });
+          },
+        ),
+      );
+    });
+
+    // adiciona ao final do checkBox, botão
+
+    checkboxes.add(
+      ElevatedButton(
+        // se pressionado executar método
+
+        onPressed: () {
+          _showSelectedLocal(); // mostra selecionados
+        },
+
+        child: const Text('Show Selected'),
+      ),
+    );
+
+    return checkboxes;
+  }
+
+  void _showSelected() {
+    // mostra itens selecionados
+
+    List<String> selected = []; // lista de strings
+
+    // percorre coleção que contém o itens selecionados
+
+    checked.forEach((String key, bool value) {
+      if (value) {
+        // se valor válido
+
+        selected.add(key); // adiciona na lista de strings
+      }
+    });
+
+    // mostra caixa de diálogo com as opções selecionadas
+
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          // título da lista
+
+          title: const Text('Selected Items'),
+
+          // conteúdo da lista
+
+          //* a cada elemento adicina uma vírgula
+
+          content: Text(selected.join(', ')),
+
+          actions: [
+            // cria botão na caixa de diálogo
+
+            TextButton(
+              onPressed: () {
+                //fecha caixa de diálogo
+
+                Navigator.of(context).pop();
+              },
+              child: const Text('OK'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  void _showSelectedPeriodo() {
+    // mostra itens selecionados
+
+    List<String> selected = []; // lista de strings
+
+    // percorre coleção que contém o itens selecionados
+
+    periodo.forEach((String key, bool value) {
+      if (value) {
+        // se valor válido
+
+        selected.add(key); // adiciona na lista de strings
+      }
+    });
+
+    // mostra caixa de diálogo com as opções selecionadas
+
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          // título da lista
+
+          title: const Text('Selected Items'),
+
+          // conteúdo da lista
+
+          //* a cada elemento adicina uma vírgula
+
+          content: Text(selected.join(', ')),
+
+          actions: [
+            // cria botão na caixa de diálogo
+
+            TextButton(
+              onPressed: () {
+                //fecha caixa de diálogo
+
+                Navigator.of(context).pop();
+              },
+              child: const Text('OK'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  void _showSelectedLocal() {
+    // mostra itens selecionados
+
+    List<String> selected = []; // lista de strings
+
+    // percorre coleção que contém o itens selecionados
+
+    local.forEach((String key, bool value) {
+      if (value) {
+        // se valor válido
+
+        selected.add(key); // adiciona na lista de strings
+      }
+    });
+
+    // mostra caixa de diálogo com as opções selecionadas
+
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          // título da lista
+
+          title: const Text('Selected Items'),
+
+          // conteúdo da lista
+
+          //* a cada elemento adicina uma vírgula
+
+          content: Text(selected.join(', ')),
+
+          actions: [
+            // cria botão na caixa de diálogo
+
+            TextButton(
+              onPressed: () {
+                //fecha caixa de diálogo
+
+                Navigator.of(context).pop();
+              },
+              child: const Text('OK'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+}
+==================================================================================================================
+import 'package:flutter/material.dart';
+
+void main() => runApp(MyApp());
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Flutter Demo',
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: RadioSample(),
+    );
+  }
+}
+
+class RadioSample extends StatefulWidget {
+  @override
+  RadioSampleState createState() => RadioSampleState();
+}
+
+class RadioSampleState extends State<RadioSample> {
+  String? selectedCourse; // Variável para armazenar o curso selecionado
+  String? selectedPeriod; // Variável para armazenar o período selecionado
+  String? selectedLocation; // Variável para armazenar a localidade selecionada
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Radio Sample'),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(2.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(2.0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: _buildCourses(),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(2.0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: _buildPeriods(),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(2.0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: _buildLocations(),
+              ),
+            ),
+            ElevatedButton(
+              onPressed: _showSelected,
+              child: const Text('Show Selected'),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  List<Widget> _buildCourses() {
+    List<String> courses = ['Desenv. Sistemas', 'Automação', 'Administração'];
+    return courses.map((course) {
+      return RadioListTile<String>(
+        title: Text(course),
+        value: course,
+        groupValue: selectedCourse,
+        onChanged: (value) {
+          setState(() {
+            selectedCourse = value;
+          });
+        },
+      );
+    }).toList();
+  }
+
+  List<Widget> _buildPeriods() {
+    List<String> periods = ['Diurno', 'Matutino', 'Noturno'];
+    return periods.map((period) {
+      return RadioListTile<String>(
+        title: Text(period),
+        value: period,
+        groupValue: selectedPeriod,
+        onChanged: (value) {
+          setState(() {
+            selectedPeriod = value;
+          });
+        },
+      );
+    }).toList();
+  }
+
+  List<Widget> _buildLocations() {
+    List<String> locations = ['Sede', 'Macedo', 'João Cursino'];
+    return locations.map((location) {
+      return RadioListTile<String>(
+        title: Text(location),
+        value: location,
+        groupValue: selectedLocation,
+        onChanged: (value) {
+          setState(() {
+            selectedLocation = value;
+          });
+        },
+      );
+    }).toList();
+  }
+
+  void _showSelected() {
+    List<String> selected = [];
+    if (selectedCourse != null) selected.add('Curso: $selectedCourse');
+    if (selectedPeriod != null) selected.add('Período: $selectedPeriod');
+    if (selectedLocation != null) selected.add('Local: $selectedLocation');
+
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Selected Items'),
+          content: Text(selected.join('\n')),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: const Text('OK'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+}

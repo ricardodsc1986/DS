@@ -1,0 +1,248 @@
+import 'package:flutter/material.dart';
+
+//inicia aplicação
+
+void main() {
+
+  runApp(MyApp());//cria e executa instância
+
+}
+
+
+class MyApp extends StatelessWidget {
+
+  @override
+
+  Widget build(BuildContext context) {
+
+    return MaterialApp(//define titulo e home
+
+      title: 'Sample Input',
+
+      home: Forms(),
+
+    );
+
+  }
+
+}
+
+// classe formulário para entrada de dados
+
+class Forms extends StatefulWidget {
+
+  @override
+
+  FormsState createState() => FormsState();//instância
+
+}
+
+
+class FormsState extends State<Forms> {
+
+  //define conteúdo de listView
+
+  final List<String> items = ['Item 1', 'Item 2', 'Item 3', 'Item 4'];
+
+  
+
+  final List<String> items2 = ['Item 11', 'Item 22', 'Item 33', 'Item 44'];
+
+  
+
+  
+
+  // define cores para mensagens de aviso
+
+  // informações de envio
+
+  String _result = "";
+
+  String _selectItem = "";
+
+  bool envio = false;
+
+
+  // obtém item selecionado e armazena
+
+  void changeSelectedItem(String e) {
+
+    setState(() {
+
+      _selectItem = e;
+
+      _result = _selectItem;
+
+    });
+
+  }
+
+
+    
+
+  @override
+
+  Widget build(BuildContext context) {
+
+    return Scaffold(
+
+      appBar: AppBar(
+
+        title: const Text('Sample Input ListView'),
+
+      ),
+
+      body: Align(
+
+        alignment: Alignment.center,
+
+        child: Column(
+
+          mainAxisSize: MainAxisSize.max,
+
+          children: [
+
+            const Divider(),//linha divisória
+
+            const SizedBox(height: 16.0),
+
+            const Text(
+
+              'ListView Options',
+
+              style: TextStyle(fontSize: 24.0, color: Colors.blue),
+
+            ),
+
+            const Divider(),// linha divisória
+
+            //Expanded( if view all items listview
+
+            
+           Row(
+
+           mainAxisAlignment: MainAxisAlignment.center,
+
+          children: [
+            
+            Container(
+              
+
+              width: 200,
+
+              height: 100,
+
+              decoration: BoxDecoration(
+
+                border: Border.all(
+
+                  color: Colors.grey,
+
+                  width: 1.0,
+
+                ),
+
+              ),
+
+              child: ListView.builder(
+
+                shrinkWrap: true, // if scroll
+
+                itemCount: items.length,
+
+                itemBuilder: (BuildContext context, int index) {
+
+                  return ListTile(
+
+                    //leading: Image(image: items[index]),
+
+                    title: Text(items[index]),
+
+                    //subtitle: Text(items[index]),
+
+                    onTap: () {
+
+                      // Handle tap on the item
+
+                      print('Tapped on Item ${index + 1}');
+
+                      changeSelectedItem('Tapped on Item ${index + 1}');
+
+                    },
+
+                  );
+
+                },
+
+              ),
+
+            ),
+            
+                        Container(
+
+              width: 200,
+
+              height: 100,
+
+              decoration: BoxDecoration(
+
+                border: Border.all(
+
+                  color: Colors.grey,
+
+                  width: 1.0,
+
+                ),
+
+              ),
+
+              child: ListView.builder(
+
+                shrinkWrap: true, // if scroll
+
+                itemCount: items.length,
+
+                itemBuilder: (BuildContext context, int index) {
+
+                  return ListTile(
+
+                    //leading: Image(image: items[index]),
+
+                    title: Text(items[index]),
+
+                    //subtitle: Text(items[index]),
+
+                    onTap: () {
+
+                      // Handle tap on the item
+
+                      print('Tapped on Item ${index + 1}');
+
+                      changeSelectedItem('Tapped on Item ${index + 1}');
+
+                    },
+
+                  );
+
+                },
+
+              ),
+
+            ),
+            
+
+          ],
+
+                         ),
+            ],
+            
+        ),
+
+      ),
+
+    );
+
+
+  }
+
+}

@@ -8,12 +8,12 @@ class Livro {
   String genero;
   String editora;
   double precoVenda;
-  double precoCusto;
-  double precoLucro;
+  double custo;
+  double lucro;
 
   // Construtor
   Livro(this.titulo, this.autor, this.anoPublicacao, this.genero, this.editora,
-      this.precoVenda, this.precoCusto, this.precoLucro);
+      this.precoVenda, this.custo, this.lucro);
 
   // Método para exibir informações do livro
   void exibirInformacoes() {
@@ -22,32 +22,19 @@ class Livro {
     print("Ano de Publicação: $anoPublicacao");
     print("Gênero: $genero");
     print("Editora: $editora");
-    print("Preço de Venda: R\$${precoVenda.toStringAsFixed(2)}");
-    print("Preço de Custo: R\$${precoCusto.toStringAsFixed(2)}");
-    print("Lucro: R\$${precoLucro.toStringAsFixed(2)}");
-  }
-
-  void calcularPrecoVenda(double lucro) {
-    this.precoLucro = lucro;
-    precoVenda = precoCusto + precoCusto * (lucro / 100);
-  }
-
-  double imprimirPrecoVenda() {
-    return (precoVenda);
+    print("Preço de Venda: \$${precoVenda.toStringAsFixed(2)}");
+    print("Custo: \$${custo.toStringAsFixed(2)}");
+    print("Lucro: \$${lucro.toStringAsFixed(2)}");
   }
 }
 
 void main() {
   // objetos da classe Livro
-  Livro livro1 = Livro("Dom Casmurro", "Machado de Assis", 1899, "Romance",
-      "Editora XYZ", 29.90, 15.00, 14.90);
-  Livro livro2 = Livro("O Pequeno Príncipe", "Antoine de Saint-Exupéry", 1943,
-      "Fábula", "Editora ABC", 19.90, 10.00, 9.90);
+  var livro1 = Livro("Dom Casmurro", "Machado de Assis", 1899, "Romance", "Editora XYZ", 29.90, 15.00, 14.90);
+  var livro2 = Livro("O Pequeno Príncipe", "Antoine de Saint-Exupéry", 1943, "Fábula", "Editora ABC", 19.90, 10.00, 9.90);
 
   // métodos dos objetos
   livro1.exibirInformacoes();
-  print("**************************");
+  print("");
   livro2.exibirInformacoes();
-  livro1.calcularPrecoVenda(75);
-  print(livro1.imprimirPrecoVenda());
 }

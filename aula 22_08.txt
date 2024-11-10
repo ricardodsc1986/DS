@@ -1,0 +1,75 @@
+class Usuario{
+  late double altura, peso, imc;
+    
+  void setAltura(double v){
+    altura = v;
+  }
+  
+  double getAltura(){
+    return altura;
+  }
+  
+   void setPeso(double b){
+    peso = b;
+  }
+  
+    double getPeso(){
+    return peso;
+  }
+  
+  void setImc(double i){
+    peso = i;
+  }
+  
+  void calcularImc(){
+    imc = peso / (altura*altura);
+  }
+  
+  double getImc(){
+    return imc;
+  } 
+  
+  void result(){
+    imc = peso / (altura*altura);
+    if (imc <= 16.9){
+      print('Muito abaixo do pêso.');
+    }
+    else if (imc > 16.9 && imc <= 18.4){ 
+      print('Abaixo do pêso');
+    }
+    else if (imc > 18.4 && imc <= 24.9){ 
+      print('Pêso normal');
+    }
+    else if (imc > 24.9 && imc <= 29.9){ 
+      print('Acima do pêso');
+    }
+    else if (imc > 29.9 && imc <= 34.9){ 
+      print('Obesidade grau I');
+    }
+    else if (imc > 34.9 && imc <= 40){   
+      print('Obesidade grau II');
+    }
+    else if (imc > 40){
+      print('Obesidade grau III');
+    } 
+  }
+      
+  }
+
+void main() {
+  var teste = Usuario();
+  
+  teste.setAltura(1.70);
+  teste.setPeso(55);
+  teste.calcularImc();
+  
+  print("Sua altura: ${teste.getAltura()}");
+  print("Sua peso: ${teste.getPeso()}");
+  print("Sua imc: ${teste.getImc().round()}");
+  
+  print("-----------------------------------------------------------");
+  
+  teste.result();
+  
+  
+}

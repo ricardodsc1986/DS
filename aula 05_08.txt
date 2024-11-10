@@ -1,0 +1,45 @@
+class Personagem{
+  // construtor  
+  final String nome;
+  int forca;
+  int ataque;
+ 
+ 
+  Personagem(this.nome, this.forca, this.ataque){
+     // print("Criei um objeto");
+  }
+ 
+  void imprimirNome(){
+    print(this.nome);
+  }
+ 
+  void imprimirForca(){
+    print(this.forca);
+  }
+ 
+  void recebeAtaque(int valorAtaque){
+    this.forca = this.forca - valorAtaque;
+  }
+ 
+  int retornaAtaque(){
+    return this.ataque;
+  }
+
+ 
+}
+
+void main() {
+  var spiderMan = Personagem('Spiderman',1000,200);
+  var duendeVerde=Personagem('Duende Verde',800,100);
+  var maryJane=Personagem('Mary Jane',100,10);
+
+  spiderMan.imprimirNome();
+  spiderMan.imprimirForca();
+ 
+  duendeVerde.imprimirNome();
+  duendeVerde.imprimirForca();
+  duendeVerde.recebeAtaque(spiderMan.retornaAtaque());
+  duendeVerde.imprimirForca();
+ 
+  maryJane.imprimirNome();
+  maryJane.imprimirForca();

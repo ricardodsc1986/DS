@@ -1,0 +1,23 @@
+https://www.invertexto.com/etecds2024
+void main() {
+  int tab=5;
+  
+  int temp=tab;
+  
+  tab--;
+  
+  for (int numero = 0; numero <= 10; numero++) {
+    print('${tab} x ${numero} = ${tab*numero}');
+  }
+  
+  tab=temp;
+  for (int numero = 0; numero <= 10; numero++) {
+    print('${tab} x ${numero} = ${tab*numero}');
+  }
+  
+  
+  tab++;
+  for (int numero = 0; numero <= 10; numero++) {
+    print('${tab} x ${numero} = ${tab*numero}');
+  }
+}
